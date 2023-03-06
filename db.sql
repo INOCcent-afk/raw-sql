@@ -46,10 +46,12 @@ CREATE TABLE carcolorrelation (
 );
 
 -- INNER JOINS gives rows with car.id
-SELECT * FROM person JOIN car ON person.car_id = car.id;
+select * from car INNER JOIN person ON car.person_id = person.id;
 
--- LEFT JOINS gives all rows despit of car.id being null
+-- LEFT JOINS gives all rows despite of car.id being null
 SELECT * FROM person LEFT JOIN car ON car.id = person.car_id; 
+
+-- SELECT 
 
 insert into person (name) values ('eparfrey0');
 insert into person (name) values ('sreicharz1');
@@ -81,3 +83,4 @@ insert into carcolorrelation (car_id, carcolor_id) values (3, 1);
 insert into carcolorrelation (car_id, carcolor_id) values (3, 3);
 insert into carcolorrelation (car_id, carcolor_id) values (4, 1);
 insert into carcolorrelation (car_id, carcolor_id) values (5, 1);
+

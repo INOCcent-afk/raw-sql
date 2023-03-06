@@ -33,3 +33,5 @@ insert into TweetUser (email, password) values ('test@gmail.com', 'test');
 
 -- Create Tweet
 insert into Tweet (tweetmessage, tweetuser_id) values ('My first Tweet', 1);
+
+
