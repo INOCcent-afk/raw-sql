@@ -19,3 +19,10 @@ SELECT id, make, model, price AS original_price,
 
 SELECT COALESCE(email, 'email not provided') FROM person;
 
+-- INNER JOINS gives rows with car.id
+SELECT * FROM person
+    JOIN car ON person.car_id = car.id;
+
+-- LEFT JOINS gives all rows despit of car.id being null
+SELECT * FROM person
+    LEFT JOIN car ON car.id = person.car_id; 
