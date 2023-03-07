@@ -84,3 +84,55 @@ insert into carcolorrelation (car_id, carcolor_id) values (3, 3);
 insert into carcolorrelation (car_id, carcolor_id) values (4, 1);
 insert into carcolorrelation (car_id, carcolor_id) values (5, 1);
 
+-- Aliasing
+SELECT firstName + ' ' + lastName AS fullName
+FROM person;
+
+SELECT human.firstName FROM person AS human
+JOIN employeSalary AS salary 
+    ON human.id = salary.person_id;
+
+-- CTE
+WiTH CTE_Employee as (
+    SElECT firstName, lastName, gender, salary, 
+    COUNT(gender) OVER (PARTITION by gender) as TotalGender,
+    AVG(salary) OVER (PARTITION by gender) as AvgSalary
+    FROM person as emp
+    JOIN employeeSalary as sal
+        ON emp.id = sal.id
+    WHERE salary > '3000'
+)
+
+SELECT * FROM WiTH CTE_Employee;
+
+-- temp table 
+CREATE TABLE #temp_employee (
+    id int;
+);
+
+-- STORED PROCEDURE
+CReATE PROCEDURE test
+AS 
+SELECT * FROM person;
+
+EXEC test;
+
+-- 
+
+CREATE PROCEDURE temp_employee
+AS
+CREATE TABLE #temp_employee (
+    id int;
+)
+
+Insert into #temp_employee 
+    SELECT * from person GROUP BY something;
+
+SELECT * FROM #temp_employee
+
+-- Subqueries
+SELECT employeeId, salary, (SELECT AVG(salary) FROM employeeSalary) AS AverageSalary
+FROM employeeSalary;
+
+SELECT employeeId, salary, AVG(salary) over () as AverageSalary
+FROM employeeSalary;
