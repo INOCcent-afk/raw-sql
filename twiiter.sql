@@ -34,4 +34,34 @@ insert into TweetUser (email, password) values ('test@gmail.com', 'test');
 -- Create Tweet
 insert into Tweet (tweetmessage, tweetuser_id) values ('My first Tweet', 1);
 
+CREATE TABLE tweetUser (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE tweet (
+    id SERIAL PRIMARY KEY,
+    tweetMessage VARCHAR(255),
+    tweetUserId INT NOT NULL,
+
+    FOREIGN KEY (tweetUserId) REFERENCES tweetUser (id)
+);
+
+CREATE TABLE tweets (
+    tweetParentId INTEGER NOT NULL,
+    tweetId INTEGER NOT NULL,
+
+    FOREIGN KEY (tweetParentId) REFERENCES tweet(id),
+    FOREIGN KEY (tweetId) REFERENCES tweet(id)
+);
+
+CREATE TABLE tweetLike (
+    id SERIAL PRIMARY KEY,
+    tweetUserId INT NOT NULL,
+    tweetId INT NOT NULL,
+
+    FOREIGN KEY (tweetUserId) REFERENCES tweetUser (id),
+    FOREIGN KEY (tweetId) REFERENCES tweet (id)
+);
 
